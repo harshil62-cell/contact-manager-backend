@@ -1,6 +1,7 @@
 const express=require('express');
 const dotenv=require('dotenv').config();
 const contactRoutes=require('./routes/contactRoutes.js');
+const userRoutes=require('./routes/userRoutes.js');
 const { errorHandler } = require('./middleware/errorHandler.js');
 const { connectDb } = require('./config/dbConnection.js');
 
@@ -12,6 +13,7 @@ const port=process.env.PORT;
 app.use(express.json());
 //Routes
 app.use('/api/contacts',contactRoutes);
+app.use('/api/users',userRoutes);
 //Middleware for handling error
 app.use(errorHandler);
 
