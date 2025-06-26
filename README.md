@@ -69,15 +69,15 @@ Authorization: Bearer <your-token>
 
 ### 1. Clone the repo
 
-```bash
+bash
 git clone https://github.com/harshil62-cell/contact-manager-backend.git
 cd contact-manager-backend
 
-2. Install dependencies
+### 2. Install dependencies
 
 npm install
 
-3. Set up environment variables
+### 3. Set up environment variables
 
 Create a .env file in the root with the following:
 
@@ -85,11 +85,11 @@ PORT=5000
 MONGO_URI=your_mongo_connection_string
 JWT_SECRET=your_jwt_secret
 
-4. Start the server
+### 4. Start the server
 
 npm start
 
-📌 API Endpoints Overview
+### 📌 API Endpoints Overview
 Method	Endpoint	Description	Auth Required
 POST	/api/users/register	Register a new user	❌
 POST	/api/users/login	Login and get JWT token	❌
