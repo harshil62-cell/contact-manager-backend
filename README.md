@@ -70,8 +70,8 @@ Authorization: Bearer <your-token>
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/contact-management-api.git
-cd contact-management-api
+git clone https://github.com/harshil62-cell/contact-manager-backend.git
+cd contact-manager-backend
 
 2. Install dependencies
 
