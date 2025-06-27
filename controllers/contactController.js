@@ -4,6 +4,7 @@
 // automatically forwards them to your Express error-handling middleware via next(err).
 const asyncHandler=require("express-async-handler");
 const Contact=require('../models/contactModel');
+const { format } = require('@fast-csv/format');
 //@desc Get all contacts
 //@route GET /api/contacts
 //@access private
@@ -16,7 +17,7 @@ const getContacts=asyncHandler(async(req,res)=>{
 //@route POST /api/contacts
 //@access private
 const createContact=asyncHandler(async(req,res)=>{
-    const{name,email,phone}=req.body;
+    const{name,email,phone,birthday}=req.body;
     if(!name || !email || !phone){
         res.status(400);
         throw new Error("All fields are mandatory");
@@ -25,7 +26,8 @@ const createContact=asyncHandler(async(req,res)=>{
         name,
         email,
         phone,
-        user_id:req.user.id
+        user_id:req.user.id,
+        birthday
     });
     res.status(201).json(contact);
 });
@@ -80,8 +82,33 @@ const deleteContact=asyncHandler(async(req,res)=>{
     res.status(200).json(deletedContact);
 });
 
+//@desc download contacts in csv
+//@route GET /api/contacts/export
+//@access private
+const exportContacts = asyncHandler(async (req, res) => {
+  const contacts = await Contact.find({ user_id: req.user.id });
+
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', 'attachment; filename=contacts.csv');
+
+  const csvStream = format({ headers: true });
+
+  csvStream.pipe(res);
+
+  contacts.forEach(contact => {
+    csvStream.write({
+      Name: contact.name,
+      Email: contact.email,
+      Phone: contact.phone,
+      Birthday: contact.birthday ? contact.birthday.toISOString().split('T')[0] : '',
+    });
+  });
+
+  csvStream.end();
+});
 
 
 
 
-module.exports={getContacts,getContact,createContact,updateContact,deleteContact};
+
+module.exports={getContacts,getContact,createContact,updateContact,deleteContact,exportContacts};

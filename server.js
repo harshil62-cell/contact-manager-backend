@@ -4,6 +4,7 @@ const YAML = require('yamljs');
 const dotenv = require('dotenv').config();
 const contactRoutes = require('./routes/contactRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
+const startBirthdayCron = require("./cron/scheduler");
 const { errorHandler } = require('./middleware/errorHandler.js');
 const { connectDb } = require('./config/dbConnection.js');
 
@@ -30,3 +31,5 @@ app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
+
+startBirthdayCron();

@@ -17,6 +17,10 @@ const contactSchema=mongoose.Schema({
     phone:{
         type: String,
         required: [true,"Please add the contact phone number"],
+    },
+     birthday: {
+        type: Date,
+        required: false,
     }
 },{
    timestamps: true, 
