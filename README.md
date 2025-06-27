@@ -79,14 +79,17 @@ JWT_SECRET=your_jwt_secret
 
 npm start
 
-### 📌 API Endpoints Overview
-Method	Endpoint	Description	Auth Required
-POST	/api/users/register	Register a new user	❌
-POST	/api/users/login	Login and get JWT token	❌
-GET	/api/users/current	Get current user info	✅
-GET	/api/contacts	Get all contacts	✅
-POST	/api/contacts	Create a new contact	✅
-GET	/api/contacts/:id	Get a contact by ID	✅
-PUT	/api/contacts/:id	Update a contact by ID	✅
-DELETE	/api/contacts/:id	Delete a contact by ID	✅
-GET	/api/contacts/export	Export contacts as CSV	✅
+## 📌 API Endpoints Overview
+
+| Method | Endpoint                | Description              | Auth Required |
+|--------|-------------------------|--------------------------|----------------|
+| POST   | `/api/users/register`   | Register a new user      | ❌             |
+| POST   | `/api/users/login`      | Login and get JWT token  | ❌             |
+| GET    | `/api/users/current`    | Get current user info    | ✅             |
+| GET    | `/api/contacts`         | Get all contacts         | ✅             |
+| POST   | `/api/contacts`         | Create a new contact     | ✅             |
+| GET    | `/api/contacts/:id`     | Get a contact by ID      | ✅             |
+| PUT    | `/api/contacts/:id`     | Update a contact by ID   | ✅             |
+| DELETE | `/api/contacts/:id`     | Delete a contact by ID   | ✅             |
+| GET    | `/api/contacts/export`  | Export contacts as CSV   | ✅             |
+
