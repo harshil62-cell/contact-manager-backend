@@ -10,6 +10,8 @@ A secure and modular REST API for managing user contacts, built using **Node.js*
 
 - 🔐 **JWT Authentication** (Register / Login / Get Current User)
 - 📇 **Contact CRUD** (Create, Read, Update, Delete contacts)
+- 📤 **Export Contacts to CSV** (via `/api/contacts/export`)
+- 🎂 **Birthday Reminder Emails** sent to users
 - 🧰 **Protected Routes** using middleware
 - 📄 **Swagger UI Documentation** via `/api-docs`
 - ✅ **Error Handling Middleware**
@@ -25,23 +27,11 @@ A secure and modular REST API for managing user contacts, built using **Node.js*
 - **JWT (jsonwebtoken)**
 - **dotenv**
 - **Swagger (via YAML)**
+- **fast-csv** (for CSV export)
+- **nodemailer** (for birthday emails)
 - **Postman** for manual testing
 
 ---
-
-## 📂 Project Structure
-
-project-root/
-│
-├── routes/ # API route definitions (contacts, users)
-├── controllers/ # Route logic
-├── middleware/ # Error handling, auth
-├── models/ # Mongoose schemas
-├── config/ # DB connection
-├── swagger.yaml # API documentation
-├── .env # Environment variables
-└── server.js # Entry point
-
 
 ---
 
@@ -93,9 +83,10 @@ npm start
 Method	Endpoint	Description	Auth Required
 POST	/api/users/register	Register a new user	❌
 POST	/api/users/login	Login and get JWT token	❌
-GET	/api/users/current	Get current logged-in user	✅
+GET	/api/users/current	Get current user info	✅
 GET	/api/contacts	Get all contacts	✅
 POST	/api/contacts	Create a new contact	✅
-GET	/api/contacts/:id	Get contact by ID	✅
-PUT	/api/contacts/:id	Update contact by ID	✅
-DELETE	/api/contacts/:id	Delete contact by ID	✅
+GET	/api/contacts/:id	Get a contact by ID	✅
+PUT	/api/contacts/:id	Update a contact by ID	✅
+DELETE	/api/contacts/:id	Delete a contact by ID	✅
+GET	/api/contacts/export	Export contacts as CSV	✅
