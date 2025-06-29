@@ -4,6 +4,7 @@
 // automatically forwards them to your Express error-handling middleware via next(err).
 const asyncHandler=require("express-async-handler");
 const Contact=require('../models/contactModel');
+const User=require('../models/userModel');
 const { format } = require('@fast-csv/format');
 //@desc Get all contacts
 //@route GET /api/contacts
@@ -107,8 +108,24 @@ const exportContacts = asyncHandler(async (req, res) => {
   csvStream.end();
 });
 
+//@desc check wether your contact uses our application through matching their emails
+//@route GET /api/contacts/check
+//@access private
+const checkContact=asyncHandler(async(req,res)=>{
+    const {contactId}=req.params;
+    const contact=await Contact.findById(contactId);
+    if (!contact) {
+    return res.status(404).json({ message: "Contact not found" });
+  }
+    const userToBeVerified=await User.findOne({email:contact.email});
+    if(contact.email===userToBeVerified?.email){
+        res.status(200).json({status:true});
+    }
+    res.status(200).json({status:false});
+});
 
 
 
 
-module.exports={getContacts,getContact,createContact,updateContact,deleteContact,exportContacts};
+
+module.exports={getContacts,getContact,createContact,updateContact,deleteContact,exportContacts,checkContact};

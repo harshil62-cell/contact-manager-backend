@@ -7,10 +7,6 @@ const startBirthdayCron = () => {
     console.log("Running birthday check...");
     checkBirthdays();
   });
-//  cron.schedule("04 20 * * *", () => {
-//     console.log("⏰ Running birthday check at 7:35 PM...");
-//     checkBirthdays();
-//   });
 };
 
 module.exports = startBirthdayCron;
